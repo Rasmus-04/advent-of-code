@@ -1,3 +1,8 @@
+import time
+
+start = time.time()
+print(start)
+
 with open("input.txt", "r") as f:
     f = f.readlines()
 
@@ -51,23 +56,14 @@ for indexx, i in enumerate(f):
                 else:
                     lista.append((x1 + x, y1))
     else:
-        while True:
-            if (x2, y2) in lista:
-                if (x2, y2) not in dup:
-                    dup.append((x2, y2))
-            else:
-                lista.append((x2, y2))
-            if x2 == x1 and y1 == y2:
-                break
-            if x2 < x1:
-                x2 += 1
-            else:
-                x2 -= 1
-            if y2 < y1:
-                y2 += 1
-            else:
-                y2 -= 1
+        continue
 
 
 # x < 18627
 print(len(dup))
+
+end = time.time()
+
+print(end-start)
+
+# 82.09012222290039 S
