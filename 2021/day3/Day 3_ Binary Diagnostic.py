@@ -1,14 +1,14 @@
-gamma_rate = ""
-epsilon_rate = ""
+oxygen = ""
+CO2 = ""
 
-with open("../input.txt", "r") as f:
+with open("input.txt", "r") as f:
     f = f.readlines()
 
 f = list(map(lambda x:x.strip(),f))
 
 
 def answer():
-    global gamma_rate, epsilon_rate
+    global oxygen, CO2
     for y in range(12):
         one = 0
         zero = 0
@@ -38,4 +38,4 @@ def convert(inp):
 
 answer()
 
-print(convert(gamma_rate) * convert(epsilon_rate))
+print(convert(oxygen) * convert(CO2))
