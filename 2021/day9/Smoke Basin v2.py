@@ -1,69 +1,68 @@
-import sys
-
 with open("../input.txt", "r") as f:
     f = f.readlines()
 
 f = list(map(lambda x: x.strip(), f))
 
 
-sys.setrecursionlimit(30000)
 
-test = []
+temp = []
+
+ans = []
+
 def get_answer(pos):
     row = pos[0]
     col = pos[1]
 
-    if f[row][col] == "9" or pos in test:
+    if f[row][col] == "9" or pos in temp:
         return
 
     elif row == 0:
         if col == 0:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row + 1, col))
             get_answer((row, col + 1))
         elif col == len(f[0]) - 1:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row + 1, col))
             get_answer((row, col - 1))
         else:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row + 1, col))
             get_answer((row, col - 1))
             get_answer((row, col + 1))
 
     elif row == len(f) - 1:
         if col == 0:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row - 1, col))
             get_answer((row, col + 1))
         elif col == len(f[0]) - 1:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row - 1, col))
             get_answer((row, col - 1))
         else:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row - 1, col))
             get_answer((row, col - 1))
             get_answer((row, col + 1))
 
     else:
-        return
         if col == 0:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row + 1, col))
             get_answer((row, col + 1))
-            get_answer((row - 1, col + 1))
+            get_answer((row - 1, col))
         elif col == len(f[0]) - 1:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row + 1, col))
             get_answer((row, col - 1))
-            get_answer((row - 1, col + 1))
+            get_answer((row - 1, col))
         else:
-            test.append(pos)
+            temp.append(pos)
             get_answer((row + 1, col))
             get_answer((row, col - 1))
             get_answer((row, col + 1))
-            get_answer((row - 1, col + 1))
+            get_answer((row - 1, col))
 
     return
 
@@ -106,9 +105,13 @@ for row in range(len(f)):
 
 
 for i in answer:
-    test.clear()
+    temp.clear()
     get_answer(i)
-    print(len(test))
+    ans.append(len(temp))
 
 
-print(answer)
+x = 1
+for i in sorted(ans)[:-4:-1]:
+    x *= i
+
+print(x)
