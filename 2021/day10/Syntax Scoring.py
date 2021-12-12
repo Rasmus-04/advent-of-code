@@ -10,7 +10,6 @@ illegal_char = []
 
 for line in f:
     open_chunk = []
-    close_chunk = []
     for char_index, char in enumerate(line):
         if char in op:
             open_chunk.append(char)
